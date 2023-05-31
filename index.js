@@ -3,6 +3,7 @@ const fs = require('fs');
 const xlsx = require('xlsx');
 
 async function execute() {
+    console.info('-------process params----------', process.argv);
     const params = process.argv[3].split(' ');
     console.info('-----START DOWNLOAD FTP FILE---', params);
     const folderPath = params.find((el) => el.includes('folderPath'))?.replace('--folderPath=', '');
