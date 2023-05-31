@@ -4,20 +4,14 @@ const xlsx = require('xlsx');
 
 async function execute() {
     console.info('-------process params----------', process.argv);
-    const params = process.argv[3].split(' ');
+    const params = JSON.parse(process.argv[3] || '{}');
     console.info('-----START DOWNLOAD FTP FILE---', params);
-    const folderPath = params.find((el) => el.includes('folderPath'))?.replace('--folderPath=', '');
-    const fileName = params.find((el) => el.includes('fileName'))?.replace('--fileName=', '');
-    const ftpHost = params.find((el) => el.includes('ftpHost'))?.replace('--ftpHost=', '');
-    const ftpPort = params.find((el) => el.includes('ftpPort'))?.replace('--ftpPort=', '');
-    const ftpUser = params.find((el) => el.includes('ftpUser'))?.replace('--ftpUser=', '');
-    const ftpPassword = params.find((el) => el.includes('ftpPassword'))?.replace('--ftpPassword=', '');
-    console.info("folderPath: ", folderPath);
-    console.info("fileName: ", fileName);
-    console.info("ftpHost: ", ftpHost);
-    console.info("ftpPort: ", ftpPort);
-    console.info("ftpUser: ", ftpUser);
-    console.info("ftpPassword: ", ftpPassword);
+    const folderPath = params.folderPath;
+    const fileName = params.fileName;
+    const ftpHost = params.ftpHost;
+    const ftpPort = params.ftpPort;
+    const ftpUser = params.ftpUser;
+    const ftpPassword = params.ftpPassword;
     if (!fileName || !ftpPort || !ftpPort || !ftpUser || !ftpPassword) {
         return;
     }
